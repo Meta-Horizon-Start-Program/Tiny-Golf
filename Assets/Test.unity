@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ProtocolType: 0
+  m_ProtocolType: 1
   m_UseWebSockets: 0
   m_UseEncryption: 0
   m_MaxPacketQueueSize: 128
@@ -904,7 +904,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 662901324}
-    PlayerPrefab: {fileID: 0}
+    PlayerPrefab: {fileID: 4794484141295215323, guid: 2ded214493c13eb4fa604835f73be2c4, type: 3}
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: 912a6ed4f6b36924ba5f6f1048d096f6, type: 2}
@@ -1268,6 +1268,10 @@ PrefabInstance:
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
       value: 1801810542
       objectReference: {fileID: 0}
+    - target: {fileID: 1193560017780773292, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
+      propertyPath: m_AutoInitializeCallbacks
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1291793744222493835, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1343,6 +1347,10 @@ PrefabInstance:
     - target: {fileID: 3111361229466660727, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314381471516240778, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
+      propertyPath: m_ActiveFontFeatures.Array.size
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4505848660998877059, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
       propertyPath: 'm_ActiveFontFeatures.Array.data[0]'
@@ -1542,7 +1550,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2313778211436051708, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 9049525915171362231, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cfbf217f600104b7aa7ea631ede8d876, type: 3}
@@ -2036,11 +2045,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 848692921}
   - {fileID: 326917333}
   - {fileID: 3060448213817685883}
-  - {fileID: 664950927}
-  - {fileID: 848692921}
   - {fileID: 789679106}
+  - {fileID: 664950927}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2048,6 +2057,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0.011}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &999434974 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1149903581173863409, guid: 0267a1d338db2bf4c9625e450bbaaad0, type: 3}
+  m_PrefabInstance: {fileID: 158475618}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad97d272b98331644876b2289d56dd4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1001304054
 GameObject:
   m_ObjectHideFlags: 0
@@ -3844,14 +3864,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7420480439970819436}
-  - component: {fileID: 9103542205665798396}
   m_Layer: 0
   m_Name: 3_Connection Success
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &200449543767301231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8672,7 +8691,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -12157,7 +12176,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -15315,7 +15334,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 1
-  m_ActiveFontFeatures: 00000000
+  m_ActiveFontFeatures: 6e72656b
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -21282,6 +21301,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 999434974}
+        m_TargetAssemblyTypeName: XRMultiplayer.XRINetworkGameManager, Assembly-CSharp
+        m_MethodName: Disconnect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 4071602079541238889}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -21294,17 +21325,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: XRMPT.OptionsPanel, XRMPT
-        m_MethodName: ToggleMenu
-        m_Mode: 1
+      - m_Target: {fileID: 326917332}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!1 &9062732492239889037
 GameObject:
@@ -21384,46 +21415,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2281685768028201760}
   m_CullTransparentMesh: 1
---- !u!114 &9103542205665798396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199022493986166051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d283a9893352d6e49b6b6db49148e069, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_TimeToEnable: 3
-  m_UnityEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4071602079541238889}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: XRMPT.OptionsPanel, XRMPT
-        m_MethodName: ToggleMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!224 &9104341208196482164
 RectTransform:
   m_ObjectHideFlags: 0

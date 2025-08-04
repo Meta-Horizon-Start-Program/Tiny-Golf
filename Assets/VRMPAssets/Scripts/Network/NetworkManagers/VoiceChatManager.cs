@@ -30,7 +30,7 @@ namespace XRMultiplayer
         /// <summary>
         /// Dictionary of all the <see cref="XRINetworkPlayer"/>'s in the voice chat.
         /// </summary>
-        public static Dictionary<string, XRINetworkPlayer> m_PlayersDictionary = new();
+        public static Dictionary<string, BaseNetworkPlayer> m_PlayersDictionary = new();
 
         /// <summary>
         /// This is the bindable variable for subscribing to the local player muting themselves.
@@ -446,7 +446,7 @@ namespace XRMultiplayer
                 m_ConnectedToRoom = true;
                 m_LocalParticpant = participant;
                 m_SelfMuted.Value = false;
-                XRINetworkPlayer.LocalPlayer.SetVoiceId(m_LocalParticpant.PlayerId);
+                BaseNetworkPlayer.LocalPlayer.SetVoiceId(m_LocalParticpant.PlayerId);
                 Utils.Log($"{k_DebugPrepend}Joined Voice Channel: {m_CurrentLobbyId}");
                 m_ConnectionStatus.Value = "Joined Voice Channel";
                 PlayerHudNotification.Instance.ShowText("Joined Voice Chat", 3.0f);
@@ -454,7 +454,7 @@ namespace XRMultiplayer
             else
             {
                 Utils.Log($"{k_DebugPrepend}Non-Local Player Joined Voice Channel: {participant.PlayerId}");
-                foreach (XRINetworkPlayer player in FindObjectsByType<XRINetworkPlayer>(FindObjectsSortMode.None))
+                foreach (BaseNetworkPlayer player in FindObjectsByType<BaseNetworkPlayer>(FindObjectsSortMode.None))
                 {
                     if (player.playerVoiceId == participant.PlayerId)
                     {
@@ -488,7 +488,7 @@ namespace XRMultiplayer
         }
 
         // Gets called as soon as participant ID is synced
-        public static void AddNewVivoxPlayer(string participantID, XRINetworkPlayer networkPlayer)
+        public static void AddNewVivoxPlayer(string participantID, BaseNetworkPlayer networkPlayer)
         {
             if (!m_PlayersDictionary.ContainsKey(participantID))
             {
@@ -502,7 +502,7 @@ namespace XRMultiplayer
 
         public static void RemoveVivoxPlayer(string participantID)
         {
-            if (participantID == XRINetworkPlayer.LocalPlayer.playerVoiceId)
+            if (participantID == BaseNetworkPlayer.LocalPlayer.playerVoiceId)
             {
                 Utils.Log($"{k_DebugPrepend}Local Player Left Voice Chat.");
                 return;

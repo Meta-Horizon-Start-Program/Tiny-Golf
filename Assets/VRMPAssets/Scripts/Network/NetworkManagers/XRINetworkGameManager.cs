@@ -318,13 +318,13 @@ namespace XRMultiplayer
         /// <returns>
         /// Returns true based on whether or not a player with that Id exists.
         /// </returns>
-        public virtual bool GetPlayerByID(ulong id, out XRINetworkPlayer player)
+        public virtual bool GetPlayerByID(ulong id, out BaseNetworkPlayer player)
         {
             // Find all existing players in scene. This is a workaround until NGO exposes client side player list (2.x I believe - JG).
-            XRINetworkPlayer[] allPlayers = FindObjectsByType<XRINetworkPlayer>(FindObjectsSortMode.None);
+            BaseNetworkPlayer[] allPlayers = FindObjectsByType<BaseNetworkPlayer>(FindObjectsSortMode.None);
 
             //Loops through existing players and returns true if player with id is found.
-            foreach (XRINetworkPlayer p in allPlayers)
+            foreach (BaseNetworkPlayer p in allPlayers)
             {
                 if (p.NetworkObject.OwnerClientId == id)
                 {
@@ -353,6 +353,8 @@ namespace XRMultiplayer
         /// <remarks>Called from <see cref="XRINetworkPlayer.CompleteSetup"/>.</remarks>
         public virtual void PlayerJoined(ulong playerID)
         {
+            Debug.Log("Playerlist - PLAYER JOINING !");
+
             // If playerID is not already registered, then add.
             if (!m_CurrentPlayerIDs.Contains(playerID))
             {

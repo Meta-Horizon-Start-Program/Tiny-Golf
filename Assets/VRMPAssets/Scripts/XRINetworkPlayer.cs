@@ -412,7 +412,7 @@ namespace XRMultiplayer
 
             if (!VoiceChatManager.m_PlayersDictionary.ContainsKey(playerVoiceId))
             {
-                VoiceChatManager.AddNewVivoxPlayer(playerVoiceId, this);
+                //VoiceChatManager.AddNewVivoxPlayer(playerVoiceId, this);
             }
         }
         private void ParticipantAudioEnergyChanged()

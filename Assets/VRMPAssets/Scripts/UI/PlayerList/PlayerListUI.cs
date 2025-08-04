@@ -12,7 +12,7 @@ namespace XRMultiplayer
 
         [SerializeField] bool m_AutoInitializeCallbacks = true;
 
-        readonly Dictionary<PlayerSlot, XRINetworkPlayer> m_PlayerDictionary = new();
+        readonly Dictionary<PlayerSlot, BaseNetworkPlayer> m_PlayerDictionary = new();
 
         bool m_CallbacksInitialized = false;
 
@@ -44,6 +44,7 @@ namespace XRMultiplayer
         /// </summary>
         public void InitializeCallbacks()
         {
+            Debug.Log("Playerlist - INITIALIZE CALL BACKS IN PLAYER LIST");
             if (m_CallbacksInitialized) return;
             m_CallbacksInitialized = true;
 
@@ -59,6 +60,7 @@ namespace XRMultiplayer
 
         void OnConnected(bool connected)
         {
+            Debug.Log("Playerlist - ON CONNECTED CALL BACK");
             if (!connected)
             {
                 foreach (Transform t in m_ConnectedPlayersViewportContentTransform)
@@ -72,6 +74,8 @@ namespace XRMultiplayer
 
         void ConnectedPlayerStateChange(ulong playerId, bool connected)
         {
+            Debug.Log("Playerlist - CONNECTED PLAYER CALLBACK");
+
             if (connected)
             {
                 SetupPlayerSlotUI(playerId);
@@ -107,7 +111,7 @@ namespace XRMultiplayer
             PlayerSlot slot = Instantiate(m_PlayerSlotPrefab, m_ConnectedPlayersViewportContentTransform).GetComponent<PlayerSlot>();
             slot.playerID = playerId;
 
-            if (XRINetworkGameManager.Instance.GetPlayerByID(playerId, out XRINetworkPlayer player))
+            if (XRINetworkGameManager.Instance.GetPlayerByID(playerId, out BaseNetworkPlayer player))
             {
                 if (m_PlayerDictionary.TryAdd(slot, player))
                 {

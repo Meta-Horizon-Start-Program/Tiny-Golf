@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Unity.Multiplayer.Playmode;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
@@ -49,14 +50,11 @@ namespace XRMultiplayer
                 // This allows for multiple instances of the editor to connect to UGS.
 #if UNITY_EDITOR
                 playerId = "Editor";
-
-#if HAS_MPPM
                 //Check for MPPM
                 playerId += CheckMPPM();
 #elif HAS_PARRELSYNC
                 // Check for ParrelSync
                 playerId += CheckParrelSync();
-#endif
 #endif
                 // Check for command line args in builds
                 if (!Application.isEditor && m_UseCommandLineArgs)
@@ -116,7 +114,6 @@ namespace XRMultiplayer
         }
 
 #if UNITY_EDITOR
-#if HAS_MPPM
         string CheckMPPM()
         {
             Utils.Log($"{k_DebugPrepend}MPPM Found");
@@ -124,16 +121,10 @@ namespace XRMultiplayer
             if(CurrentPlayer.ReadOnlyTags().Length > 0)
             {
                 mppmString += CurrentPlayer.ReadOnlyTags()[0];
-
-                // Force input module to disable mouse and touch input to suppress MPPM startup errors.
-                var inputModule = FindFirstObjectByType<XRUIInputModule>();
-                inputModule.enableMouseInput = false;
-                inputModule.enableTouchInput = false;
             }
 
             return mppmString;
         }
-#endif
 
 #if HAS_PARRELSYNC
         string CheckParrelSync()

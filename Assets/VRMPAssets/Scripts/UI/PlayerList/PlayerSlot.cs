@@ -17,10 +17,10 @@ namespace XRMultiplayer
         [SerializeField] Image m_PlayerVoiceIcon;
         [SerializeField] Image m_SquelchedIcon;
         [SerializeField] Sprite[] micIcons;
-        XRINetworkPlayer m_Player;
+        BaseNetworkPlayer m_Player;
         internal ulong playerID = 0;
 
-        public void Setup(XRINetworkPlayer player)
+        public void Setup(BaseNetworkPlayer player)
         {
             m_Player = player;
             m_Player.onColorUpdated += UpdateColor;
