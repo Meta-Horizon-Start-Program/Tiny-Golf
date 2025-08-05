@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using Unity.Multiplayer.Playmode;
 using Unity.Services.Authentication;
 using Unity.Services.Core;
 using UnityEngine;
@@ -51,7 +50,7 @@ namespace XRMultiplayer
 #if UNITY_EDITOR
                 playerId = "Editor";
                 //Check for MPPM
-                playerId += CheckMPPM();
+                //playerId += CheckMPPM();
 #elif HAS_PARRELSYNC
                 // Check for ParrelSync
                 playerId += CheckParrelSync();
@@ -114,6 +113,8 @@ namespace XRMultiplayer
         }
 
 #if UNITY_EDITOR
+
+        /*
         string CheckMPPM()
         {
             Utils.Log($"{k_DebugPrepend}MPPM Found");
@@ -124,7 +125,7 @@ namespace XRMultiplayer
             }
 
             return mppmString;
-        }
+        }*/
 
 #if HAS_PARRELSYNC
         string CheckParrelSync()
