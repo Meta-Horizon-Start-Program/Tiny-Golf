@@ -11,9 +11,7 @@ using Unity.Multiplayer.Playmode;
 using UnityEngine.XR.Interaction.Toolkit.UI;
 #endif
 
-#if HAS_PARRELSYNC
 using ParrelSync;
-#endif
 
 #endif
 
@@ -51,7 +49,6 @@ namespace XRMultiplayer
                 playerId = "Editor";
                 //Check for MPPM
                 //playerId += CheckMPPM();
-#elif HAS_PARRELSYNC
                 // Check for ParrelSync
                 playerId += CheckParrelSync();
 #endif
@@ -127,7 +124,6 @@ namespace XRMultiplayer
             return mppmString;
         }*/
 
-#if HAS_PARRELSYNC
         string CheckParrelSync()
         {
             Utils.Log($"{k_DebugPrepend}ParrelSync Found");
@@ -135,7 +131,6 @@ namespace XRMultiplayer
             if (ClonesManager.IsClone()) pSyncString += ClonesManager.GetArgument();
             return pSyncString;
         }
-#endif
 #endif
     }
 }

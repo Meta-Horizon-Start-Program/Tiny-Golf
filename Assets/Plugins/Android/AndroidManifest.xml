@@ -1,18 +1,56 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:installLocation="auto">
-  <application android:label="@string/app_name" android:icon="@mipmap/app_icon" android:allowBackup="false">
-    <activity android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" android:configChanges="locale|fontScale|keyboard|keyboardHidden|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode" android:launchMode="singleTask" android:name="com.unity3d.player.UnityPlayerGameActivity" android:excludeFromRecents="true" android:exported="true">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:installLocation="auto">
+
+  <!-- Head tracking requirement -->
+  <uses-feature android:name="android.hardware.vr.headtracking"
+                android:version="1"
+                android:required="true" />
+
+  <!-- System overlay keyboard (current feature name style) -->
+  <uses-feature android:name="com.oculus.feature.KEYBOARD_OVERLAY"
+                android:required="true" />
+
+  <!-- Optional / as-needed features you already rely on -->
+  <uses-feature android:name="com.oculus.feature.RENDER_MODEL" android:required="false" />
+  <uses-permission android:name="com.oculus.permission.RENDER_MODEL" />
+  <uses-permission android:name="com.oculus.permission.USE_ANCHOR_API" />
+
+  <application
+      android:label="@string/app_name"
+      android:icon="@mipmap/app_icon"
+      android:allowBackup="false">
+
+    <activity
+        android:name="com.unity3d.player.UnityPlayerGameActivity"
+        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+        android:launchMode="singleTask"
+        android:excludeFromRecents="true"
+        android:exported="true"
+        android:configChanges="locale|fontScale|mcc|mnc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|touchscreen|uiMode">
+      <!-- NOTE: keyboard|keyboardHidden intentionally removed -->
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />
         <category android:name="com.oculus.intent.category.VR" />
       </intent-filter>
+
+      <!-- Keep focus awareness so system overlays (like the keyboard) can appear without a hard pause -->
       <meta-data android:name="com.oculus.vr.focusaware" android:value="true" />
     </activity>
+
+    <!-- Leave these as you had them -->
     <meta-data android:name="unityplayer.SkipPermissionsDialog" android:value="false" />
-    <meta-data android:name="com.oculus.ossplash.background" android:value="black" />
+    <meta-data android:name="com.oculus.ossplash.background" android:value="passthrough-contextual" />
     <meta-data android:name="com.oculus.telemetry.project_guid" android:value="dd61132b-3e21-4629-ac75-3afab3f05f48" />
-    <meta-data android:name="com.oculus.supportedDevices" android:value="quest|quest2|questpro|quest3|quest3s" />
+    <meta-data android:name="com.oculus.supportedDevices"
+               android:value="quest2|questpro|quest3|quest3s"
+               tools:replace="android:value" />
   </application>
-  <uses-feature android:name="android.hardware.vr.headtracking" android:version="1" android:required="true" />
+
+  <!--
+    If you kept the older flag in a legacy manifest, remove it to avoid confusion:
+    <uses-feature android:name="oculus.software.overlay_keyboard" android:required="true" />
+  -->
 </manifest>
