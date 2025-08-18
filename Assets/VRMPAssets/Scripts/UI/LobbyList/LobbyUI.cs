@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using WebSocketSharp;
 using Unity.Services.Vivox;
+using Unity.Services.Authentication;
 
 namespace XRMultiplayer
 {
@@ -57,17 +58,19 @@ namespace XRMultiplayer
             {
                 Destroy(t.gameObject);
             }
+
         }
 
         private void OnEnable()
         {
-            CheckInternetAsync();
+            CheckForInternet();
         }
 
         private void OnDisable()
         {
             HideLobbies();
         }
+
 
         private void OnDestroy()
         {
@@ -83,6 +86,7 @@ namespace XRMultiplayer
                 ToggleConnectionSubPanel(5);
                 await XRINetworkGameManager.Instance.Authenticate();
             }
+
             CheckForInternet();
         }
 
