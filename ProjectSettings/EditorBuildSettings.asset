@@ -8,9 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/F2P Multiplayer Sample Part 1.unity
     guid: a0af3b863e1f7004a82d7d687a55f47a
-  - enabled: 1
-    path: Assets/Scenes/F2P Multiplayer Sample Part 2 Prepare.unity
-    guid: dadd327646767c74d89adc1335f7f08d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 812e72c893cc50f4ca5c45cee041eb30, type: 2}

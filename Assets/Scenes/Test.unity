@@ -1015,7 +1015,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: ball
-  gameManager: {fileID: 571488535}
 --- !u!1 &102648029 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f7c932d7e25187a448d41326f00231c8, type: 3}
@@ -2987,8 +2986,6 @@ MonoBehaviour:
   - {fileID: 1376432029}
   - {fileID: 388696139}
   ballRigidbody: {fileID: 424063571}
-  textmesh: {fileID: 538144686}
-  currentHitNumber: 0
 --- !u!1001 &579496878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3255,6 +3252,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2099358486}
     m_Modifications:
+    - target: {fileID: -1004650092726022746, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2916490323
+      objectReference: {fileID: 0}
     - target: {fileID: 6803296160840599810, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8254,6 +8255,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 963752610}
     m_Modifications:
+    - target: {fileID: -1004650092726022746, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2565574679
+      objectReference: {fileID: 0}
     - target: {fileID: 6803296160840599810, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8568,6 +8573,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1630015512}
     m_Modifications:
+    - target: {fileID: -1004650092726022746, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 2508981185
+      objectReference: {fileID: 0}
     - target: {fileID: 6803296160840599810, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -8847,6 +8856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 261456882}
     m_Modifications:
+    - target: {fileID: -1004650092726022746, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 3102999492
+      objectReference: {fileID: 0}
     - target: {fileID: 6803296160840599810, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -24039,6 +24052,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1753402837}
     m_Modifications:
+    - target: {fileID: -1004650092726022746, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 629397900
+      objectReference: {fileID: 0}
     - target: {fileID: 6803296160840599810, guid: 2023828e36601b743b44fb6e8d64b289, type: 3}
       propertyPath: m_RootOrder
       value: 0
