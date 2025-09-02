@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/F2P Multiplayer Sample Part 1.unity
-    guid: a0af3b863e1f7004a82d7d687a55f47a
+    path: Assets/Scenes/F2P Multiplayer Sample Part 3.unity
+    guid: 7f61e74ed62d78f4f8491e95fc0ef424
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 812e72c893cc50f4ca5c45cee041eb30, type: 2}

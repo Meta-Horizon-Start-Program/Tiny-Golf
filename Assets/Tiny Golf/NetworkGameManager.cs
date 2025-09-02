@@ -4,12 +4,16 @@ using Unity.Netcode;
 
 public class NetworkGameManager : NetworkBehaviour
 {
-    [Header("Course")]
-    [SerializeField] private List<Transform> startingPositions = new();
+    
+}
 
-    [Header("Ball")]
-    [SerializeField] private NetworkObject ballNetObj;
-    [SerializeField] private Rigidbody ballRb;
+
+
+/*
+ * public List<Transform> startingPositions = new();
+
+    public NetworkObject ballNOPrefab;
+    public NetworkObject spawnedballNO;
 
     private int currentHoleId = 0;
     private int currentPlayerId = 0;
@@ -18,16 +22,13 @@ public class NetworkGameManager : NetworkBehaviour
 
     private void Awake() => Instance = this;
 
-
     public override void OnNetworkSpawn()
     {
         if (!IsServer) 
             return;
 
-        GiveBallToCurrentPlayerId();
-        ResetBallToCurrentHoleId();
+        SpawnBallForCurrentHoleAndPlayer();
     }
-
 
     public void OnBallScoredServer()
     {
@@ -36,56 +37,40 @@ public class NetworkGameManager : NetworkBehaviour
 
         var connectedPlayers = NetworkManager.ConnectedClientsIds;
 
-        //go to next player
         currentPlayerId++;
 
-        //if all player have played go to next hole and reset player
         if (currentPlayerId >= connectedPlayers.Count)
         {
             currentHoleId++;
             currentPlayerId = 0;
         }
 
-        //if all hole have been played reset to hole 0 and player 0;
         if (currentHoleId >= startingPositions.Count)
         {
             currentHoleId = 0;
         }
 
-        GiveBallToCurrentPlayerId();
-        ResetBallToCurrentHoleId();
+        SpawnBallForCurrentHoleAndPlayer();
     }
 
-
-    private void GiveBallToCurrentPlayerId()
+    private void SpawnBallForCurrentHoleAndPlayer()
     {
-        ulong target = NetworkManager.ConnectedClientsIds[currentPlayerId];
+        if (!IsServer) 
+            return;
 
-        if (ballNetObj.OwnerClientId != target)
+        ulong targetClientId = NetworkManager.ConnectedClientsIds[currentPlayerId];
+
+        if (spawnedballNO != null && spawnedballNO.IsSpawned)
         {
-            ballNetObj.ChangeOwnership(target);
+            spawnedballNO.Despawn(true);
+            spawnedballNO = null;
         }
-    }
 
-    private void ResetBallToCurrentHoleId()
-    {
-        var spawn = startingPositions[currentHoleId];
+        Transform spawnT = startingPositions[currentHoleId];
+        NetworkObject newBall = Instantiate(ballNOPrefab, spawnT.position, spawnT.rotation);
 
-        // Tell the (new) owner to snap the ball locally (no server writes)
-        var target = new ClientRpcParams
-        {
-            Send = new ClientRpcSendParams { TargetClientIds = new[] { ballNetObj.OwnerClientId } }
-        };
-        ResetBallClientRpc(spawn.position, spawn.rotation, target);
-    }
+        newBall.SpawnWithOwnership(targetClientId, true);
 
-    [ClientRpc]
-    private void ResetBallClientRpc(Vector3 pos, Quaternion rot, ClientRpcParams rpcParams = default)
-    {
-        // Only meaningful on the targeted owner when using owner-authoritative ball
-        ballRb.position = pos;
-        ballRb.rotation = rot;
-        ballRb.linearVelocity = Vector3.zero;
-        ballRb.angularVelocity = Vector3.zero;
+        spawnedballNO = newBall;
     }
-}
+ */

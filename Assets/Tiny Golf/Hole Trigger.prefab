@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6803296160840599810}
   - component: {fileID: 6803296160840599837}
-  - component: {fileID: -1004650092726022746}
-  - component: {fileID: 4681043542954141866}
+  - component: {fileID: -9095875954094164903}
+  - component: {fileID: 1813181057596054741}
   m_Layer: 0
   m_Name: Hole Trigger
   m_TagString: Untagged
@@ -57,7 +57,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-1004650092726022746
+--- !u!114 &-9095875954094164903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 696317891
+  GlobalObjectIdHash: 0
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -78,7 +78,7 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &4681043542954141866
+--- !u!114 &1813181057596054741
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,8 +87,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6803296160840599811}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 028489bdc55f13c42b8c79c2bcedfac1, type: 3}
+  m_Script: {fileID: 11500000, guid: ef0636413dad479498968144c375c4bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: ball
-  waitSeconds: 3
+  waitSeconds: 2

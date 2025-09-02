@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Club : MonoBehaviour
+public class Club : NetworkBehaviour
 {
     public string targetTag;
+
+    public float speedMultiplier = 1.3f;
 
     private Collider clubCollider;
     private Vector3 previousPosition;
@@ -26,17 +29,18 @@ public class Club : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.CompareTag(targetTag))
-        {
-            Debug.Log("Colliding..");
+        if (!IsOwner)
+            return;
 
-            Vector3 collisionPosition = clubCollider.ClosestPoint(other.transform.position);
-            Vector3 collisionNormal = other.transform.position - collisionPosition;
+        if (!other.CompareTag(targetTag))
+            return;
 
-            Vector3 projectedVelocity = Vector3.Project(velocity, collisionNormal);
+        Vector3 collisionPosition = clubCollider.ClosestPoint(other.transform.position);
+        Vector3 collisionNormal = other.transform.position - collisionPosition;
 
-            Rigidbody rb = other.attachedRigidbody;
-            rb.linearVelocity = projectedVelocity;
-        }
+        Vector3 projectedVelocity = Vector3.Project(velocity, collisionNormal);
+
+        Rigidbody rb = other.attachedRigidbody;
+        rb.linearVelocity = projectedVelocity * speedMultiplier;
     }
 }

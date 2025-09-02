@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 36293608426894542}
   - component: {fileID: 99078518908204821}
   - component: {fileID: 4882229172519540033}
-  - component: {fileID: 3422466684396925887}
-  - component: {fileID: 8683642741224079230}
+  - component: {fileID: 6307411379299142577}
   m_Layer: 0
   m_Name: Club Collider
   m_TagString: Untagged
@@ -83,7 +82,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &3422466684396925887
+--- !u!114 &6307411379299142577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -92,32 +91,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6362891457133832042}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 0
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
---- !u!114 &8683642741224079230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6362891457133832042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11102b247bdf7324d97d1984f12b2a5b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc670c644c2429747917fbcaaeacfff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetTag: ball
-  clubCollider: {fileID: 99078518908204821}
+  speedMultiplier: 1.3
 --- !u!1001 &3421764812917234578
 PrefabInstance:
   m_ObjectHideFlags: 0

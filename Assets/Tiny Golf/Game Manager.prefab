@@ -44,10 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de885310935d7c4bba0a80de0eec475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  ballRigidbody: {fileID: 0}
+  startingPositions: []
+  ballPrefab: {fileID: 3287719771550057117, guid: b4a7621ae038b2f4394c91610b91b365, type: 3}

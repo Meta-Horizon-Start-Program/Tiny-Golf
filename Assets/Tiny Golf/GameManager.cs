@@ -2,46 +2,129 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Unity.Netcode;
 
-public class GameManager : MonoBehaviour
+public class GameManager : NetworkBehaviour
 {
-    private int currentHoleNumber = 0;
+    public List<Transform> startingPositions = new();
 
-    public List<Transform> startingPositions;
+    public NetworkObject ballNOPrefab;
+    public NetworkObject goldenBallNOPrefab;
 
-    public Rigidbody ballRigidbody;
+    public bool hasGoldenBall = false;
+    
+    private NetworkObject spawnedballNO;
+
+    private int currentHoleId = 0;
+    private int currentPlayerId = 0;
 
     public static GameManager Instance { get; private set; }
+    public Leaderboard leaderboard;
+
+    private float timer = 0;
+
     private void Awake() => Instance = this;
 
-    // Start is called before the first frame update
-    void Start()
+
+    public override void OnNetworkSpawn()
     {
-        ballRigidbody.transform.position = startingPositions[currentHoleNumber].position;
-        ballRigidbody.linearVelocity = Vector3.zero;
-        ballRigidbody.angularVelocity = Vector3.zero;
+        if (!IsServer)
+            return;
+
+        SpawnBallForCurrentHoleAndPlayer();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(Keyboard.current.spaceKey.wasPressedThisFrame)
+        if(IsServer)
         {
-            GoToNextHole();
+            timer += Time.deltaTime;
         }
     }
 
-    public void GoToNextHole()
+    [ClientRpc()]
+    public void SubmitScoreClientRpc(long score, ClientRpcParams clientRpcParams = default)
     {
-        currentHoleNumber += 1;
+        if(leaderboard)
+            leaderboard.SubmitScore(score);
+    }
 
-        if(currentHoleNumber >= startingPositions.Count)
+    public void SubmitScore()
+    {
+        ulong targetClientID = NetworkManager.ConnectedClientsIds[currentPlayerId];
+
+        ClientRpcParams clientRpcParams = new ClientRpcParams
         {
-            currentHoleNumber = 0;
+            Send = new ClientRpcSendParams
+            {
+                TargetClientIds = new[] { targetClientID }
+            }
+        };
+
+        SubmitScoreClientRpc((long) timer, clientRpcParams);
+    }
+
+    public void OnBallScoredServer()
+    {
+        if (!IsServer)
+            return;
+
+        SubmitScore();
+        timer = 0;
+
+        var connectedPlayers = NetworkManager.ConnectedClientsIds;
+
+        //incrementing the current player
+        currentPlayerId++;
+
+        //if all player have played
+        if (currentPlayerId >= connectedPlayers.Count)
+        {
+            //go to next hole
+            currentHoleId++;
+            currentPlayerId = 0;
         }
 
-        ballRigidbody.transform.position = startingPositions[currentHoleNumber].position;
-        ballRigidbody.linearVelocity = Vector3.zero;
-        ballRigidbody.angularVelocity = Vector3.zero;
+        //we have played all the hole
+        if (currentHoleId >= startingPositions.Count)
+        {
+            //go back to the first hole
+            currentHoleId = 0;
+        }
+
+        SpawnBallForCurrentHoleAndPlayer();
+    }
+
+    private void SpawnBallForCurrentHoleAndPlayer()
+    {
+        if (!IsServer)
+            return;
+
+        ulong targetClientId = NetworkManager.ConnectedClientsIds[currentPlayerId];
+
+        if (spawnedballNO != null && spawnedballNO.IsSpawned)
+        {
+            spawnedballNO.Despawn(true);
+            spawnedballNO = null;
+        }
+
+        Transform spawnT = startingPositions[currentHoleId];
+        NetworkObject newBall = Instantiate(hasGoldenBall ? goldenBallNOPrefab : ballNOPrefab, spawnT.position, spawnT.rotation);
+
+        newBall.SpawnWithOwnership(targetClientId, true);
+
+        spawnedballNO = newBall;
+    }
+
+    public void RespawnWithGoldenBall()
+    {
+        RespawnWithGoldenBallServerRpc();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void RespawnWithGoldenBallServerRpc()
+    {
+        hasGoldenBall = true;
+        SpawnBallForCurrentHoleAndPlayer();
     }
 }

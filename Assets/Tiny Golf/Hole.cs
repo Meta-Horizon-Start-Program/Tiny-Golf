@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class Hole : MonoBehaviour
+public class Hole : NetworkBehaviour
 {
     [SerializeField] private string targetTag = "ball";
     [SerializeField] private float waitSeconds = 3f;
@@ -10,6 +11,9 @@ public class Hole : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (!IsServer)
+            return;
+
         if (!other.CompareTag(targetTag))
             return;
 
@@ -23,6 +27,6 @@ public class Hole : MonoBehaviour
         yield return new WaitForSeconds(waitSeconds);
         waiting = false;
 
-        GameManager.Instance.GoToNextHole();
+        GameManager.Instance.OnBallScoredServer();
     }
 }

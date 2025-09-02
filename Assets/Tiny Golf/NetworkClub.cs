@@ -3,52 +3,54 @@ using Unity.Netcode;
 
 public class NetworkClub : NetworkBehaviour
 {
-    [Header("Detect")]
+
+}
+
+
+
+/*
+   Header("Detect")]
     public string targetTag = "ball";
     [SerializeField] private Collider clubCollider;
 
-    private Rigidbody ballRb;        // Ball rigidbody (same object for everyone)
-    private NetworkObject ballNetObj;
-
+    public float speedMultiplier = 1.3f;
 
     private Vector3 prevPos;
     private Vector3 velocity;
 
     private void Start()
     {
-        if (!clubCollider) clubCollider = GetComponent<Collider>();
+        if (!clubCollider) 
+            clubCollider = GetComponent<Collider>();
+        
         prevPos = transform.position;
     }
 
     private void Update()
     {
-        velocity = (transform.position - prevPos) / Mathf.Max(Time.deltaTime, 0.0001f);
+        velocity = (transform.position - prevPos) / Time.deltaTime;
         prevPos = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        // Only the local player's club runs this code
-        if (!IsOwner) 
+        if (!IsOwner)
             return;
 
-        if (!other.CompareTag(targetTag)) 
+        if (!other.CompareTag(targetTag))
             return;
 
-        ballRb = other.attachedRigidbody;
-        ballNetObj = other.GetComponent<NetworkObject>();
-
-        // Only the ball owner is allowed to "hit" it
-        if (ballNetObj.OwnerClientId != NetworkManager.LocalClientId) 
+        NetworkObject ballNetObj = other.GetComponent<NetworkObject>();
+        if (!ballNetObj.IsOwner) 
             return;
 
-        // Compute projected velocity (same as before)
-        Vector3 collisionPos = clubCollider.ClosestPoint(other.transform.position);
-        Vector3 collisionNormal = (other.transform.position - collisionPos);
+        Vector3 collisionPosition = clubCollider.ClosestPoint(other.transform.position);
+        Vector3 collisionNormal = other.transform.position - collisionPosition;
         Vector3 projectedVelocity = Vector3.Project(velocity, collisionNormal);
 
-        // Apply movement LOCALLY (owner-authoritative ball)
-        ballRb.linearVelocity = projectedVelocity;
-        ballRb.angularVelocity = Vector3.zero;
+        Rigidbody rb = other.attachedRigidbody;
+
+        rb.linearVelocity = projectedVelocity * speedMultiplier;
     }
-}
+
+*/

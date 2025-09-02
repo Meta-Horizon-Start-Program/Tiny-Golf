@@ -4,6 +4,14 @@ using System.Collections;
 
 public class NetworkHole : NetworkBehaviour
 {
+
+}
+
+
+
+
+/*
+ 
     [SerializeField] private string targetTag = "ball";
     [SerializeField] private float waitSeconds = 3f;
     bool waiting;
@@ -27,4 +35,4 @@ public class NetworkHole : NetworkBehaviour
         NetworkGameManager.Instance.OnBallScoredServer();
         waiting = false;
     }
-}
+*/
